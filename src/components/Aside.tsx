@@ -38,7 +38,7 @@ export default function Aside() {
       className={`top-0 left-0 z-40 w-72 w-min-70 h-screen transition-transform -translate-x-full sm:translate-x-0`}
       aria-label="Sidebar"
       style={{
-        boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.25)',
+        boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.20)',
       }}
     >
       <div className="w-auto h-full px-3 py-4 overflow-y-auto bg-white transition-transform -translate-x-full sm:translate-x-0">
@@ -138,9 +138,9 @@ export default function Aside() {
         </ul>
         <ul className="pt-4 mt-4 space-y-2 w-auto font-medium border-t border-gray-200 dark:border-gray-700">
           <li>
-            <LayoutButton 
+            <LayoutButton
               onClick={() => {}}
-              tittle='Cerrar Sección'
+              tittle="Cerrar Sección"
               isChildren={true}
             />
           </li>
