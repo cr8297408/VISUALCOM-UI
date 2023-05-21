@@ -1,4 +1,6 @@
+import { hexToRGB } from '@/utils/hexToRgba';
 import React, { useState } from 'react';
+import LayoutButton from './buttons/layoutButton';
 
 // export interface AsideProps {
 //   hidden: boolean;
@@ -7,19 +9,29 @@ import React, { useState } from 'react';
 export default function Aside() {
   enum ULKEY {
     ht = 'ht',
+    opt2 = 'opt2',
+    opt3 = 'opt3',
   }
 
   const [showUl, setShowUl] = useState({
     [ULKEY.ht]: false,
+    [ULKEY.opt2]: false,
+    [ULKEY.opt3]: false,
   });
 
   const showList = (key: ULKEY) => {
     setShowUl({
+      ...showUl,
       [key]: !showUl[key],
     });
   };
 
-  console.log(showList);
+  const [isHover, setIsHover] = useState(false);
+
+  const handleHover = () => {
+    setIsHover(!isHover);
+  };
+
   return (
     <aside
       id="separator-sidebar"
@@ -58,72 +70,79 @@ export default function Aside() {
         </ul>
         <ul className="pt-4 mt-4 space-y-2 w-auto font-medium border-t border-gray-200 dark:border-gray-700">
           <li>
-            <a
-              href="#"
-              className="w-auto flex items-center p-2 text-gray-900 transition duration-75 rounded-lg  dark:text-black group"
-            >
-              <svg
-                aria-hidden="true"
-                className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
-                focusable="false"
-                data-prefix="fas"
-                data-icon="gem"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-              >
-                <path
-                  fill="currentColor"
-                  d="M378.7 32H133.3L256 182.7L378.7 32zM512 192l-107.4-141.3L289.6 192H512zM107.4 50.67L0 192h222.4L107.4 50.67zM244.3 474.9C247.3 478.2 251.6 480 256 480s8.653-1.828 11.67-5.062L510.6 224H1.365L244.3 474.9z"
-                ></path>
-              </svg>
-              <span className="ml-4">Upgrade to Pro</span>
-            </a>
-          </li>
-          <li>
-            <button
+            <LayoutButton
               onClick={() => {
                 showList(ULKEY.ht);
               }}
-              className="w-auto flex items-center p-2 rounded-lg justify-around text-gray-900 transition duration-75  dark:text-black group"
-              style={
-                showUl[ULKEY.ht]
-                  ? {
-                      background: '#08B2FF',
-                      opacity: 0.25,
-                      boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.30)',
-                    }
-                  : {}
-              }
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                className={`bi bi-chevron-right m-1 flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 ${
-                  showUl[ULKEY.ht] ? 'rotate-90' : ''
-                }`}
-                viewBox="0 0 16 16"
-                focusable="false"
-                data-prefix="fas"
-                data-icon="gem"
-                role="img"
-              >
-                <path
-                  fill="currentColor"
-                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-                />
-              </svg>
-              Historial de Traducciones
-            </button>
+              condition={showUl[ULKEY.ht]}
+              tittle="Historial de Traducciones"
+            />
             {showUl[ULKEY.ht] ? (
               <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
+                <li>
+                  <LayoutButton
+                    onClick={() => {}}
+                    tittle="Opción Hijo"
+                    isChildren={true}
+                  />
+                </li>
               </ul>
             ) : (
               <></>
             )}
+          </li>
+          <li>
+            <LayoutButton
+              onClick={() => {
+                showList(ULKEY.opt2);
+              }}
+              condition={showUl[ULKEY.opt2]}
+              tittle="Opcion layout dos"
+            />
+            {showUl[ULKEY.opt2] ? (
+              <ul>
+                <li>
+                  <LayoutButton
+                    onClick={() => {}}
+                    tittle="Opción Hijo"
+                    isChildren={true}
+                  />
+                </li>
+              </ul>
+            ) : (
+              <></>
+            )}
+          </li>
+          <li>
+            <LayoutButton
+              onClick={() => {
+                showList(ULKEY.opt3);
+              }}
+              condition={showUl[ULKEY.opt3]}
+              tittle="Opcion layout tres"
+            />
+            {showUl[ULKEY.opt3] ? (
+              <ul>
+                <li>
+                  <LayoutButton
+                    onClick={() => {}}
+                    tittle="Opcion Hija"
+                    isChildren={true}
+                  />
+                </li>
+              </ul>
+            ) : (
+              <></>
+            )}
+          </li>
+        </ul>
+        <ul className="pt-4 mt-4 space-y-2 w-auto font-medium border-t border-gray-200 dark:border-gray-700">
+          <li>
+            <LayoutButton 
+              onClick={() => {}}
+              tittle='Cerrar Sección'
+              isChildren={true}
+            />
           </li>
         </ul>
       </div>
