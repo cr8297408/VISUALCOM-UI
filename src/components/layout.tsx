@@ -18,7 +18,11 @@ export default function RootLayout({
 }) {
   const [showAside, setShowAside] = useState(true);
   const AsideComponent = useMemo(() => {
-    return showAside ? <Aside /> : <></>;
+    return showAside ? (
+      <Aside></Aside>
+    ) : (
+      <></>
+    );  
   }, [showAside]);
 
   const Onclick = () => {
@@ -41,8 +45,6 @@ export default function RootLayout({
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
             fill="currentColor"
             style={{
               width: '2rem',
@@ -68,8 +70,6 @@ export default function RootLayout({
         <button className="m-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
             fill="currentColor"
             style={{ width: '1.5rem', height: '1.5rem' }}
             viewBox="0 0 16 16"
